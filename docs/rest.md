@@ -22,6 +22,8 @@ The HTTP protocol separates communication between the client (local) and server 
 
 Typically a REST API requires HTTPS. This helps to secure the communication between the client and server. Using SSL eliminates the need for more complex encryption approaches such as client certificates which helps make it easier to use in different environments.
 
+Clients and servers must agree on the format of the data being sent or received. Typically REST APIs use JSON. [JSON](https://www.json.org/) is a simple text-based format that allows arbitrarily complex data to be passed back and forth. Most languages support JSON either directly or through libraries making it easy to build requests and consume responses. Some APIs may support other formats as well including BSON or XML. Clients send the format of the request as part of the request header. They also specify which format(s) they would like the response in. The server will return the data in one of the supported formats.
+
 ## Requests
 
 ### Resources
@@ -48,7 +50,7 @@ A single URL can have different behavior depending upon the verb being used. For
 
 Some requests require additional data such as a user's ID or the publish date of a post. In many cases the URL is built in such a way that the data is passed as part of the URL. This is especially true for GET requests since the results can be cached by servers. 
 
-In some cases, such as updates, there is too much data to be placed in the URL so the request body must be used instead. Each API can define its own format for the request body but typically a REST API supports JSON. [JSON](https://www.json.org/) is a simple text-based format that allows arbitrarily complex data to be passed back and forth. Most languages support JSON either directly or through libraries making it easy to build requests and consume responses.
+In some cases, such as updates, there is too much data to be placed in the URL so the request body must be used instead. Each resource will define the structure of the data it is returning. In some cases the data may be a subset of the full data.
 
 *Note: GET requests cannot have a request body. This is defined by the HTTP Specification but some clients may or may not enforce it. Data for GET requests must always be specified in the URL.*
 
@@ -81,7 +83,7 @@ These are some of the common codes that APIs may return.
 
 ### Response Body
 
-Like the request, a response can have a body. Most API calls will return a body with the data relevant for the request (e.g. user information, comments in a post, etc). Like the request, JSON is the typical format used but some APIs support other formats such as XML or BSON. Typically the client specifies what formats it would accept when sending the request and the server responds with the format it supports.
+Like the request, a response can have a body. Most API calls will return a body with the data relevant for the request (e.g. user information, comments in a post, etc). Like the request, the client and server must agree on the format to be used for the response. 
 
 The response body may not always be the expected data. In the case of an error, in addition to the status code, most servers will also return an error object indicating what failed. The [RFC7807](https://tools.ietf.org/html/rfc7807) proposal is currently being developed to provide consistency for error reporting in REST APIs but has not yet been approved. Some APIs already support this proposal but others have not. Refer to the documentation for a specific API to learn how it reports errors. 
 
