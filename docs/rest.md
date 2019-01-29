@@ -10,6 +10,7 @@ REST (Representational State Transfer) is a commonly used architecture for commu
 - [Responses](#responses)
   - [HTTP Status Codes](#http-status-codes)
   - [Response Body](#response-body)
+- [Versioning](#versioning)
   
 You may learn more about REST [here](https://en.wikipedia.org/wiki/Representational_state_transfer).
 
@@ -83,3 +84,13 @@ These are some of the common codes that APIs may return.
 Like the request, a response can have a body. Most API calls will return a body with the data relevant for the request (e.g. user information, comments in a post, etc). Like the request, JSON is the typical format used but some APIs support other formats such as XML or BSON. Typically the client specifies what formats it would accept when sending the request and the server responds with the format it supports.
 
 The response body may not always be the expected data. In the case of an error, in addition to the status code, most servers will also return an error object indicating what failed. The [RFC7807](https://tools.ietf.org/html/rfc7807) proposal is currently being developed to provide consistency for error reporting in REST APIs but has not yet been approved. Some APIs already support this proposal but others have not. Refer to the documentation for a specific API to learn how it reports errors. 
+
+## Versioning
+
+APIs form a contract between the client and server. A client and server must agree on what data will be sent and received for each request. Changes to the contract may break older clients so each change has to be evaluated for breaking changes. Some examples of breaking changes include the following.
+
+- Adding a required input to a request.
+- Removing or renaming fields in a request or response.
+- Changing the URL of a resource.
+
+Versioning is important to help manage the changes. There are different ways to version a REST API. Some common approaches include in the URL, as part of the query string or in the request header. Each have their own advantages and disadvantages. It is important for clients to use the latest version available and to periodically update their code to use the newer versions. There is no standard for when a versioned API will go away. Some companies keep only the current and last version while other companies keep all previous versions. 
