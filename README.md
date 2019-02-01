@@ -8,8 +8,9 @@ For information and help using an API please contact FSMB using the contact info
 - [Rest APIs](docs/rest.md)  
 - [Authentication](docs/authentication.md)
   - [Authentication URLs](#authentication-urls)
-- [Paging and Sorting](docs/paging.md)
-- [Consuming an API](#consuming-an-api)
+- [Paging and Sorting](docs/paging-sorting.md)
+- [Errors](docs/errors.md)
+- [Consuming an API](docs/consuming.md)
 
 ## Authentication URLs
 
@@ -40,32 +41,3 @@ curl -X GET \
 ```
 
 Refer to the [Samples](samples/readme.md) for examples of how to use this in code.
-
-## Error Reporting
-
-If a call to an API fails then the server will return back the appropriate HTTP status code. For bad requests or 5xx errors the server will generally return an error detail in the body. The error detail provides additional information about what went wrong. Clients can use this information to diagnose the cause of the failure. The following information is returned.
-
-```json
-{
-   "code": "Error code",
-   "message": "Descriptive message",
-   "target": "Optional target of the error",
-   "logId": "The ID of the log entry associated with the error, if any",
-   "innerError": { },
-   "data": { }
-}
-```
-
-If the error was caused by a lower level error then `innerError` contains the error detail of the child error. Some errors may return additional data in the `data` property.
-
-You can learn more about error handling [here](docs/errors.md).
-
-## Consuming an API
-
-FSMB APIs can be consumed in a variety of ways depending upon need.
-
-[Postman](https://www.getpostman.com/) is a useful tool for testing REST APIs. Postman can be used to make just about any call to an API. To simplify using Postman with FSMB APIs, each API provides a link to the Postman collection (a set of API requests) demonstrating the API. Refer to each API for a link to the Postman collection.
-
-[OpenAPI](https://github.com/OAI/OpenAPI-Specification) (formerly known as Swagger) is a specification that APIs can provide that programmatically descripe the API and its data. OpenAPI allows the specification to be imported into a supported tools and auto-generate a client that can call the API. OpenAPI is supported in many common REST API tools and many tools can generate code for different languages. Before manually writing code check if your language can import the OpenAPI specification. All FSMB APIs provide a link to their OpenAPI specification in the documentation.
-
-Each API provides sample code, in different languages when possible, that can be used as a starting point for calling FSMB APIs. Refer to each API's documentation for the samples.
