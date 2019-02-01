@@ -1,40 +1,20 @@
 # Getting Started with FSMB APIs
 
-This documentation provides information on getting started using FSMB APIs. Refer to the documentation for the API you intend to use for more specific information and for differences that may exist. For information and help using an API please contact FSMB using the contact information provided for the specific API you wish to use.
+This documentation provides information on getting started using FSMB APIs. Refer to the documentation for the API you intend to use for more specific information and for differences that may exist. 
+
+For information and help using an API please contact FSMB using the contact information provided for the specific API you wish to use.
 
 - [Definitions](docs/definitions.md)
-- [Rest APIs](#rest-apis)
-  - [Versioning](#versioning)
-  - [Supported Data Formats](#supported-data-formats)  
-- [Authentication](#authentication)
-- [Paging and Sorting](#paging-and-sorting)
+- [Rest APIs](docs/rest.md)  
+- [Authentication](docs/authentication.md)
+  - [Authentication URLs](#authentication-urls)
+- [Paging and Sorting](docs/paging.md)
 - [Consuming an API](#consuming-an-api)
 
-## REST APIs
+## Authentication URLs
 
-APIs provided by FSMB are REST-based. REST provides a consistent, simple format that clients can use to programmatically call FSMB. 
+The following URLs are used for authentication for FSMB APIs.
 
-REST is based upon the HTTP standard and is supported in any programming language that supports HTTP calls such as C#, Java, Ruby and Python without the need for complex types. Many languages have implicit support for REST APIs to make it even easier to use them. Refer to your specific language's documentation for more information on consuming REST APIs.
-
-You can learn more about REST APIs [here](docs/rest.md).
-
-### Versioning
-
-FSMB currently versions APIs at the API or resource level in the URL (e.g. `https://tempuri.org/v1/resources`). FSMB is committed to not making breaking changes in existing APIs. If a breaking change is needed then a new version will be introduced. In some cases a "preview" version may be available for clients to try out an API. 
-
-**Note: Preview versions should not be used in production as they can be deprecated, changed or removed without warning.**
-
-You can learn more about versioning [here](docs/rest.md#versioning).
-
-### Supported Data Formats
-
-At this time FSMB supports the following formats for requests and responses.
-
-- [JSON](https://www.json.org/)
-
-## Authentication
-
-Authentication URLs:
  - Demo: https://demo-services.fsmb.org/authorization/v1
  - Production: https://services.fsmb.org/authorization/v1
 
@@ -49,31 +29,6 @@ curl -X POST \
   -H 'cache-control: no-cache' \
   -d 'client_id={id}&client_secret={secret}&scope={scope}&grant_type=client_credentials'
 ```
-```csharp
-var client = new HttpClient() { BaseAddress = new Uri(url) };
-client.DefaultRequestHeaders.Add("Accept", "application/json");
-
-var id = "";
-var secret = "";
-var scope = "";
-
-var request = new List<KeyValuePair<string, string>>() {
-    new KeyValuePair<string, string>("client_id", id),
-    new KeyValuePair<string, string>("client_secret", secret),                
-    new KeyValuePair<string, string>("scope", scope),
-    new KeyValuePair<string, string>("grant_type", "client_credentials")
-};
-var content = new FormUrlEncodedContent(request);
-
-using (var response = client.PostAsync("connect/token", content).Result)
-{
-    response.EnsureSuccessStatusCode();
-                
-    var body = response.Content.ReadAsStringAsync().Result;
-
-    var token = JsonConvert.DeserializeObject<BearerToken>(body);
-};
-```
 
 If successful then the bearer token is returned with the access token in it. The access token must be passed to subsequent calls to APIs to authenticate the client.
 
@@ -83,38 +38,8 @@ curl -X GET \
   -H 'Authorization: Bearer {access_token}' \  
   -H 'cache-control: no-cache'
 ```
-```csharp
-var client = new HttpClient() { BaseAddress = new Uri(url) };
-client.DefaultRequestHeaders.Add("Accept", "application/json");
-client.DefaultRequestHeaders.Add("Authorization", "Bearer " + access_token);
-```
 
-Refer to the [Samples](samples) for examples of how to use this in code.
-
-You can learn more about authentication [here](docs/authentication.md).
-
-## Paging/Sorting
-
-Resources that return lists of items support paging and sorting. FSMB APIs use the Page-Offset model for paging in most cases. Refer to the specific API documentation to verify. The following parameters control paging options and are specified in the query string.
-
-| Parameter | Value | Description |
-| - | - | - |
-| $pageSize | Number | The number of items to return in a page. |
-| $page | Number | The page to retrieve. Page numbers start at 1. |
-
-```shell
-curl -X GET \
-   '{url}?$page=2&$pageSize=20`
-```
-
-Sorting is implemented using the `$orderBy` parameter in the query string. When supported, multiple fields can be sorted by separating them with commas. Each field can be sorted ascending or descending by adding the `asc` or `desc` suffix to the field.
-
-```shell
-curl -X GET \
-    '{url}?$orderBy=field1,field2 desc`
-```
-
-You can learn more about paging [here](docs/paging.md). You can learn more about sorting [here](docs/sorting.md).
+Refer to the [Samples](samples/readme.md) for examples of how to use this in code.
 
 ## Error Reporting
 
