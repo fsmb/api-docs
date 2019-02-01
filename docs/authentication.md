@@ -43,8 +43,23 @@ A client must authenticate with FSMB before making any other API calls. Follow t
 1. POST the request to the `/connect/token` endpoint.
 1. If the call is successful the bearer token is returned as JSON. Extract the `access_token` from the body.
 
+```shell
+curl -X POST \
+  {url}/connect/token \
+  -H 'Content-Type: application/x-www-form-urlencoded' \
+  -H 'cache-control: no-cache' \
+  -d 'client_id={id}&client_secret={secret}&scope={scope}&grant_type=client_credentials'
+```
+
 For each call to an FSMB API ensure the `Authentication` header is set. The value will be of the form `Bearer {access_token}` where `{access_token}` is the token obtained earlier. Do not include the brackets in the value.
+
+```shell
+curl -X GET \
+  '{url}' \
+  -H 'Authorization: Bearer {access_token}' \  
+  -H 'cache-control: no-cache'
+```
 
 *Note: The access token is valid only for a fixed time. If API calls start returning 401 then you will need to authenticate again.*
 
-Refer to the [samples](../samples) section for sample code.
+Refer to the [samples](../samples) section for more examples.
