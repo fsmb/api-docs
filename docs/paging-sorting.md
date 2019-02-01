@@ -51,7 +51,7 @@ In adddition to the count headers an API can return links to the next, previous,
 ```http
 X-Total-Count 150
 X-Page-Count 15
-Link <{url}?$page=1&$pageSize=10>; rel="first", <{url}?$page=5&$pageSize=10>; rel="next", <{url}?$page=3&$pageSize=10>; rel="prev", <{url}?$page=15&$pageSize=10>; rel="last"
+Link <url?$page=1&$pageSize=10>; rel="first", <url?$page=5&$pageSize=10>; rel="next", <url?$page=3&$pageSize=10>; rel="prev", <url?$page=15&$pageSize=10>; rel="last"
 ```
 
 ## Client Side Paging
