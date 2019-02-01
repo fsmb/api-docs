@@ -5,6 +5,7 @@ APIs typically require authentication before they can be used. Authentication he
 - [OAuth2](#oauth2)
   - [Client Credentials](#client-credentials)
   - [Scopes](#scopes)
+- [FSMB Authentication](#fsmb-authentication)
 
 ## OAuth2
 
@@ -25,3 +26,25 @@ Authentication is different than authorization. Authentication is the process of
 When a client authenticates they request the scope(s) they want in addition to the client ID and secret. This follows the [Principle of Least Privilege](https://en.wikipedia.org/wiki/Principle_of_least_privilege) in which a client only requests, and is granted, the rights it needs at this time. The authentication server will validate the client has access to all the scopes they request. If they do then the access token is returned with only those rights. The client cannot use any rights they did not ask for even if they would have been granted it if requested.
 
 You can learn more about OAuth2 [here](https://oauth.net/2/).
+
+## FSMB Authentication
+
+FSMB uses OAuth2 client credentials for authentication. Each client must have an account set up by FSMB and assigned the appropriate scope(s). Refer to each individual API for contact information and required scopes.
+
+A client must authenticate with FSMB before making any other API calls. Follow these steps to authenticate.
+
+1. Get the authentication URL from the [Getting Started](../readme.md) guide.
+1. Create a request body (in x-www-form-urlencoded format) containing the following values.
+   1. `client_id` set to the client ID that was assigned to you.
+   1. `client_secret` set to the client secret that was assigned to you.
+   1. `scope` set to the scope(s) that are being requested.
+   1. `grant_type` set to `client_credentials`.
+1. Set the `Content-Type` to `application/x-www-form-urlencoded`.
+1. POST the request to the `/connect/token` endpoint.
+1. If the call is successful the bearer token is returned as JSON. Extract the `access_token` from the body.
+
+For each call to an FSMB API ensure the `Authentication` header is set. The value will be of the form `Bearer {access_token}` where `{access_token}` is the token obtained earlier. Do not include the brackets in the value.
+
+*Note: The access token is valid only for a fixed time. If API calls start returning 401 then you will need to authenticate again.*
+
+Refer to the [samples](../samples) section for sample code.
