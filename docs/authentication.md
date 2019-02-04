@@ -1,6 +1,6 @@
 # Authentication
 
-APIs typically require authentication before they can be used. Authentication helps identify the caller for security, auditing and data retrieval purposes. There are different ways to authenticat a client ranging from basic user name and password combinations to client certificates.
+FSMB APIs require authentication before they can be used. Authentication helps identify the caller for security, auditing and data retrieval purposes. FSMB APIs use [OAuth2](https://oauth.net/2/) client credentials for authentication.
 
 - [OAuth2](#oauth2)
   - [Client Credentials](#client-credentials)
@@ -29,9 +29,9 @@ You can learn more about OAuth2 [here](https://oauth.net/2/).
 
 ## FSMB Authentication
 
-FSMB uses OAuth2 client credentials for authentication. Each client must have an account set up by FSMB and assigned the appropriate scope(s). Refer to each individual API for contact information and required scopes.
+Before getting started be sure to contact FSMB to get your client account set up. Refer to each API for specific contact information.
 
-A client must authenticate with FSMB before making any other API calls. Follow these steps to authenticate.
+To authenticate with FSMB before making API calls do the following.
 
 1. Get the authentication URL from the [Getting Started](../readme.md) guide.
 1. Create a request body (in x-www-form-urlencoded format) containing the following values.
