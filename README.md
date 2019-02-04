@@ -9,8 +9,8 @@ For information and help using an API please contact FSMB using the contact info
 - [Terminology](docs/terminology.md)
 - [Rest APIs](docs/rest.md)  
 - [Authentication](docs/authentication.md)  
-- [Paging and Sorting](docs/paging-sorting.md)
 - [Errors](docs/errors.md)
+- [Paging and Sorting](docs/paging-sorting.md)
 - [Consuming an API](docs/consuming.md)
 
 ## Authentication URLs
