@@ -1,6 +1,6 @@
 # Rest
 
-REST (Representational State Transfer) is a commonly used architecture for communicating between clients (consumers) and servers. Most APIs today are REST-based.
+[REST](https://en.wikipedia.org/wiki/Representational_state_transfer) (Representational State Transfer) is a commonly used architecture for communicating between clients (consumers) and servers. Most APIs today are REST-based.
 
 - [Calling a REST API](#calling-a-rest-api)
 - [HTTP Verbs](#http-verbs)
@@ -9,8 +9,6 @@ REST (Representational State Transfer) is a commonly used architecture for commu
 - [Calling an API](#calling-an-api)
 - [Versioning](#versioning)  
   
-You may learn more about REST [here](https://en.wikipedia.org/wiki/Representational_state_transfer).
-
 ## Calling a REST API
 
 A REST API consists of a request/response pair. The request is sent by the client and contains the request being made. The response comes from the server and indicates the success or failure of a request and any relevant data.
@@ -28,7 +26,7 @@ A response consists of the following components.
 
 The request URI identifies the resource being accessed and the version being used. The URI is generally of the form:
 
-```HTTP
+```shell
 VERB https://{url}/{version}/{resource}
 ```
 
