@@ -17,5 +17,5 @@ For information and help using an API please contact FSMB using the contact info
 
 The following URLs are used for authentication for FSMB APIs.
 
- - Demo: https://demo-services.fsmb.org/authorization/v1
- - Production: https://services.fsmb.org/authorization/v1
+ - Demo: https://demo-services.fsmb.org/authorization/connect/token
+ - Production: https://services.fsmb.org/authorization/connect/token
