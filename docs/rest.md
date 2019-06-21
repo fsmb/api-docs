@@ -3,10 +3,9 @@
 [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) (Representational State Transfer) is a commonly used architecture for communicating between clients (consumers) and servers. Most APIs today are REST-based.
 
 - [Calling a REST API](#calling-a-rest-api)
-- [HTTP Verbs](#http-verbs)
-- [HTTP Status Codes](#http-status-codes)
+- [HTTP Verbs](#http-request-header)
+- [HTTP Status Codes](#http-status-code)
 - [Data Formats](#data-formats)
-- [Calling an API](#calling-an-api)
 - [Versioning](#versioning)  
   
 ## Calling a REST API
