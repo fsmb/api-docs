@@ -16,6 +16,11 @@ Clients should make no assumptions about the format of codes. Codes are defined 
 
 The following is a **subset** of codes that may be returned from an API. These examples are provided as a starting point for clients to better understand FSMB codes. The examples do not include all possible codes of a single type and should be used only as a reference.
 
+- [Accreditation Entities](accreditation.md)
+- [Address Types](address-types.md)
+- [Countries](countries.md)
 - [Degrees](degrees.md)
+- [Phone Types](phone-types.md)
 - [Practitioner Types](practitioner-types.md)
 - [State or Provinces](state-provinces.md)
+- [Training Status](training-status.md)
