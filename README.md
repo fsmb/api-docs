@@ -12,6 +12,7 @@ For information and help using an API please contact FSMB using the contact info
 - [Errors](docs/errors.md)
 - [Paging and Sorting](docs/paging-sorting.md)
 - [Consuming an API](docs/consuming.md)
+- [Using Codes](docs/readme.md)
 
 ## Authentication URLs
 
