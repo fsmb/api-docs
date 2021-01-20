@@ -33,7 +33,7 @@ Before getting started be sure to contact FSMB to get your client account set up
 
 To authenticate with FSMB before making API calls do the following.
 
-1. Get the authentication URL from the [Getting Started](../README.md) guide.
+1. Get the authentication URL from the [Getting Started](../README.md) guide. Optionally use the URL specific to the API that is being used.
 1. Create a request body (in x-www-form-urlencoded format) containing the following values.
    1. `client_id` set to the client ID that was assigned to you.
    1. `client_secret` set to the client secret that was assigned to you.
