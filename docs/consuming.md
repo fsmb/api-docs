@@ -1,8 +1,8 @@
 # Consuming REST APIs
 
-Given the popularity of REST APIs it is no surprise that there are many different ways to consume an API. Most languages either have direct support or third party libraries that can be used to communicate with a REST API. Clients should always prefer to use the available tools rather than writing their own.
+Given the popularity of REST APIs, it is no surprise that there are many different ways to consume an API. Most languages either have direct support or third party libraries that can be used to communicate with a REST API. Clients should always prefer to use the available tools rather than writing their own.
 
-When first learning an API it is often useful to be able to send requests and view the responses without writing any code. There are several tools available for this. FSMB APIs all expose a [Postman](https://www.getpostman.com/) collection that you can use to learn the API. Refer to the documentation for each API to get a link to the collection.
+When first learning an API, it is often useful to be able to send requests and view the responses without writing any code. There are several tools available for this. FSMB APIs all expose a [Postman](https://www.getpostman.com/) collection that you can use to learn the API. Refer to the documentation for each API to get a link to the collection.
 
 FSMB APIs can be consumed in a variety of ways depending upon need.
 
