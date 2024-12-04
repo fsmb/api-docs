@@ -61,5 +61,3 @@ curl -X GET \
 ```
 
 *Note: The access token is valid only for a fixed time. If API calls start returning 401, then you will need to authenticate again.*
-
-Refer to the [samples](../samples) section for more examples.
