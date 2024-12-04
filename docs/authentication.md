@@ -33,16 +33,14 @@ Before getting started, be sure to contact FSMB to get your client account set u
 
 To authenticate with FSMB before making API calls, do the following.
 
-1. Create the authentication URL based upon the information provided by each API. If an API does not provide an explicit authentication URL then use the following.
-   1. Demo: `https://services-authorization-demo.fsmb.org/connect/token`
-   2. Production: `https://services-authorization.fsmb.org/connect/token`
+1. Create the authentication URL based upon the information provided by each API. This is generally the URL to the API itself.
 3. Create a request body (in x-www-form-urlencoded format) containing the following values.
    1. `client_id` set to the client ID that was assigned to you.
    1. `client_secret` set to the client secret that was assigned to you.
    1. `scope` set to the scope(s) that are being requested.
    1. `grant_type` set to `client_credentials`.
 4. Set the `Content-Type` to `application/x-www-form-urlencoded`.
-5. POST the request to the `/connect/token` endpoint.
+5. POST the request to the authentication endpoint provided by the API. This is generally `/connect/token`. For example UA API uses `https://services-ua-demo.fsmb.org/connect/token`.
 6. If the call is successful, a JSON token response is returned. Extract the `access_token` from the body to use to authenticate subsequent API calls.
 
 ```shell
