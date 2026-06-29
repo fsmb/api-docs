@@ -75,7 +75,7 @@ Paged data has the following JSON structure.
       "pageSize": 25,
       "totalItems": 10
    },
-   "data": [
+   "items": [
    ]
 }
 ```
@@ -88,7 +88,7 @@ The paging metadata is contained in a child object.
 | pageSize | number | Page size |
 | totalItems| number | Total items available (used for calculating total pages) |
 
-The actual response is stored in the `data` field as an array of objects.
+The actual response is stored in the `items` field as an array of objects.
 
 ### Client Side Paging
 
