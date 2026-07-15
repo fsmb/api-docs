@@ -5,13 +5,19 @@ Paging and sorting are important techniques for managing large data sets for bot
 Sorting controls the order in which items are returned. Sorting is often combined with paging because a change in the sort order would impact the paged results.
 
 - [Paging](#paging)
-- [Paging Metadata](#paging-metadata)
-- [Client Side Paging](#client-side-paging)
+  - [Page-Offset Paging](#page-offset-paging)
+    - [HTTP Header](#http-header)
+    - [Response Body](#response-body)
+    - [Client Side Paging](#client-side-paging)
 - [Sorting](#sorting)
 
 ## Paging
 
-FSMB APIs that return lists of items will usually implement paging. The APIs use the `Page-Offset` model for paging. In this model the client specifies the number of items to return at a time (the page size) and the current "page" to return (the offset). The paging information is passed as part of the query string.
+FSMB APIs that return lists of items will usually implement paging. 
+
+### Page-Offset Paging
+
+In this model the client specifies the number of items to return at a time (the page size) and the current "page" to return (the offset). The paging information is passed as part of the query string.
 
 | Parameter | Description |
 | - | - |
@@ -29,9 +35,11 @@ curl -X GET \
 
 Each API and resource will also have a maximum page size. The maximum page size limits how many items can be returned at once and may be dynamically determined based upon how much is available, current load on the server and other attributes. clients should never make assumptions about the maximum page size. If a client requests a page size larger than the maximum page size then the maximum page size will be used.
 
-## Paging Metadata
+When paging is used it is often important to know how many total items are available. FSMB APIs return metadata as part of the response. Where the metadata is returned depends on the API.
 
-When paging is used it is often important to know how many total items are available. FSMB APIs return metadata in the HTTP header related to paging.
+#### HTTP Header
+
+The paging metadata is included as part of the HTTP headers. This has the advantage of keeping the response body clean with no paging information. However data stored in the HTTP headers requires additional code to read, causes issues with some proxies and may be filtered out by some networks. The following HTTP headers are used.
 
 | Header | Description |
 | - | - |
@@ -54,9 +62,37 @@ X-Page-Count 15
 Link <url?$page=1&$pageSize=10>; rel="first", <url?$page=5&$pageSize=10>; rel="next", <url?$page=3&$pageSize=10>; rel="prev", <url?$page=15&$pageSize=10>; rel="last"
 ```
 
-## Client Side Paging
+#### Response Body
 
-Paging is straightforward to implement on the client side. The client first decides how many items to return at once. The client initializes a variable to represent the current page and sets it to 1. Each time the client requests the next page of data it increments the current page variable by 1. The client continues to read pages of data until all the data has been read.
+The paging metadata is included as part of the response body itself. The advantage of this approach is that all the data is contained in the response body making it easier to read and avoiding issues with caching and HTTP header filtering that network gateways may use. The disadvantage is that the body is more complex because of the need to separate paging metadata from the actual data.
+
+Paged data has the following JSON structure.
+
+```json
+{
+   "metadata": {
+      "page": 1,
+      "pageSize": 25,
+      "totalItems": 10
+   },
+   "items": [
+   ]
+}
+```
+
+The paging metadata is contained in a child object.
+
+| Field | Type | Description |
+| - | - | - |
+| page | number | Page number (1-based offset) |
+| pageSize | number | Page size |
+| totalItems| number | Total items available (used for calculating total pages) |
+
+The actual response is stored in the `items` field as an array of objects.
+
+### Client Side Paging
+
+Paging is straightforward to implement on the client side for either approach. The client first decides how many items to return at once. The client initializes a variable to represent the current page and sets it to 1. Each time the client requests the next page of data it increments the current page variable by 1. The client continues to read pages of data until all the data has been read. The only difference in methods is whether the metadata is retrieved from the HTTP headers or from inside the response body.
 
 ```csharp
 var currentPage = 1;
